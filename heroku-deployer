@@ -1,0 +1,37 @@
+echo "1.DESTROYING ALL THE APPS..."
+heroku apps:destroy anime5311 --confirm anime5311
+heroku apps:destroy kdrama-api --confirm kdrama-api
+heroku apps:destroy roms-scraper  --confirm roms-scraper
+heroku apps:destroy group-chatting-api  --confirm group-chatting-api
+heroku apps:destroy movie-code --confirm movie-code
+echo "ALL THE APPS HAVE BEEN DESTROYED"
+echo "2.NOW INITIATING LOGIN..."
+heroku login
+echo "3.CREATING THE APPS..."
+heroku apps:create movie-code
+heroku apps:create anime5311
+heroku apps:create kdrama-api
+heroku apps:create group-chatting-api
+heroku apps:create roms-scraper
+echo "4.DEPLOYING APPS..."
+cd rom-scraper
+git push heroku master
+echo "ROMS API DEPLOYED"
+cd
+cd animexninja-api 
+git push heroku master
+echo "ANIME API DEPLOYED"
+cd
+cd kdrama-crawler
+git push heroku master
+echo "KDRAMA API DEPLOYED"
+cd
+cd movie-scraper
+git push heroku master
+echo "MOVIES API DEPLOYED"
+cd
+cd group-api
+git push heroku master
+echo "GROUP CHATTING API DEPLOYED"
+cd
+
